@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Ra",
     "form": "Both",
-    "image": "https://kemet-api-sm.vercel.app/assets/god1.png",
+    "image": "../assets/god1.png",
     "description": "The sun god and one of the most important deities in Egyptian mythology. Ra was believed to travel through the sky in his sun barque and through the underworld at night."
   },
   {

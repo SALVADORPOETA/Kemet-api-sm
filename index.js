@@ -2,6 +2,11 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import godsRoutes from './routes/gods.js'
 import cors from 'cors'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const app = express()
 const PORT = 5000
@@ -23,6 +28,8 @@ app.use(bodyParser.json())
 
 app.use('/gods', godsRoutes)
 
+app.use('/assets', express.static(path.join(__dirname, './assets')))
+
 app.get('/', (req, res) => {
   const homePageContent = `
   <html>
@@ -37,6 +44,11 @@ app.get('/', (req, res) => {
   </html>
   `
   res.send(homePageContent)
+})
+
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
 })
 
 app.listen(PORT, () =>
